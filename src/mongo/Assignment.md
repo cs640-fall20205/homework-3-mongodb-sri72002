@@ -20,8 +20,6 @@ https://www.mongodb.com/docs/manual/reference/operator/query/regex/
 3. Acquaint yourself with command-line db.help() and db.collections.help() output.
     Nothing to provide.
 
-
-
 4. Find a Mongo driver in your programming language of choice (Ruby, Java,
     PHP, Go, Elixir, and so on). Provide URL to list of drivers/libraries for
     different languages.
@@ -53,12 +51,17 @@ Insert five of your friends as patrons into the library. Make sure that these ar
 For each of the queries below, write the query and include the results.
 
 1. Write a query to find the titles of all books that have at least one copy available for checkout.
+"" db.books.find(  { copiesAvailable: { $gt: 0 } },     { title: 1, _id: 0 })""
 
 2. Write a query to find the authors of all books in the "Fiction" genre.
+""db.books.find({ genre: "Fiction" }, { author: 1, _id: 0 })""
 
 3. Write a query to find the names of all patrons who owe fines (fines greater than $0).
+""db.patrons.find({ fines: { $gt: 0 } }, { name: 1, _id: 0 })""
 
 4. Write a query to find the names and membership date of all patrons who became members in the year 2024.
+""db.patrons.find({ membershipDate: { $gte: new Date("01/01/2024"), $lt: new Date("01/01/2025") } }, { name: 1, membershipDate: 1, _id: 0 })""
+
 
 Hint: Use $gte and $lt operators to specify a date range from January 1, 2024 to January 1, 2025.
 
@@ -67,15 +70,21 @@ Hint: Use $gte and $lt operators to specify a date range from January 1, 2024 to
 Complete the "Find" homework in Day 2.
 
 1. Find a shortcut for admin commands. Write the shortcut here.
+""db.adminCommand()""
 
 
 2. Find the online documentation for queries and cursors. Write the URL here.
+""https://www.mongodb.com/docs/manual/tutorial/query-documents/""
 
 
 3. Find the MongoDB documentation for mapreduce. Write the URL here.
+""https://www.mongodb.com/docs/manual/core/map-reduce/""
 
 
 4. Through the JavaScript interface, investigate the code for three collections
     functions: help(), findOne(), and stats(). Past the code for each below.
     For each, write a one-sentence insight that you learned by looking at
     the code.
+""db.help(): It helps me see what commands I can use in MongoDB
+ findOne(): It helps me view one record quickly
+stats(): It helps me check how big or active a collection is""
